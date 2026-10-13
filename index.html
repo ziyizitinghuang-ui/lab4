@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,78 +10,99 @@
 <body>
 
   <main>
+    <header>
+      <h1>Make Your Drink</h1>
+      <p class="intro">
+        Not sure what to drink? Pick what sounds good and we'll choose one for you.
+      </p>
+    </header>
 
-    <h1>Make Your Drink</h1>
+    <section class="choices">
 
-    <p class="intro">
-      Choose what kind of drink you feel like having.
-    </p>
+      <div class="choice-step">
+        <p class="step-number">01</p>
+        <h2>Hot or iced?</h2>
 
+        <div class="image-options">
+          <button class="image-option temperature-button" data-temperature="hot">
+            <img src="images/hot.png" alt="Hot drink">
+            <span>Hot</span>
+          </button>
 
-    <section class="choice-step">
-
-      <h2>Hot or iced?</h2>
-
-      <div class="options">
-
-        <div class="option">
-          <img src="images/hot.png" alt="Hot drink">
-          <p>Hot</p>
+          <button class="image-option temperature-button" data-temperature="iced">
+            <img src="images/ice.png" alt="Iced drink">
+            <span>Iced</span>
+          </button>
         </div>
+      </div>
 
-        <div class="option">
-          <img src="images/ice.png" alt="Iced drink">
-          <p>Iced</p>
+      <div id="textureStep" class="choice-step hidden-step">
+        <p class="step-number">02</p>
+        <h2>Creamy or light?</h2>
+
+        <div class="image-options">
+          <button class="image-option texture-button" data-texture="creamy">
+            <img src="images/creamy.png" alt="Creamy">
+            <span>Creamy</span>
+          </button>
+
+          <button class="image-option texture-button" data-texture="light">
+            <img src="images/light.png" alt="Light">
+            <span>Light</span>
+          </button>
         </div>
+      </div>
 
+      <div id="typeStep" class="choice-step hidden-step">
+        <p class="step-number">03</p>
+        <h2>Coffee or tea?</h2>
+
+        <div class="image-options">
+          <button class="image-option type-button" data-type="coffee">
+            <img src="images/coffee.png" alt="Coffee">
+            <span>Coffee</span>
+          </button>
+
+          <button class="image-option type-button" data-type="tea">
+            <img src="images/tea.png" alt="Tea">
+            <span>Tea</span>
+          </button>
+        </div>
       </div>
 
     </section>
 
-
-    <section class="choice-step">
-
-      <h2>Creamy or light?</h2>
-
-      <div class="options">
-
-        <div class="option">
-          <img src="images/creamy.png" alt="Creamy drink">
-          <p>Creamy</p>
-        </div>
-
-        <div class="option">
-          <img src="images/light.png" alt="Light drink">
-          <p>Light</p>
-        </div>
-
+    <section id="result" class="result">
+      <div class="result-label">
+        <span>YOUR PICK</span>
       </div>
 
-    </section>
-
-
-    <section class="choice-step">
-
-      <h2>Coffee or tea?</h2>
-
-      <div class="options">
-
-        <div class="option">
-          <img src="images/coffee.png" alt="Coffee">
-          <p>Coffee</p>
+      <div class="result-content">
+        <div class="drink-circle">
+          <img id="drinkImage" src="" alt="">
         </div>
 
-        <div class="option">
-          <img src="images/tea.png" alt="Tea">
-          <p>Tea</p>
-        </div>
+        <div class="drink-info">
+          <p class="result-small">You got</p>
+          <h2 id="drinkName"></h2>
 
+          <div class="selection-summary">
+            <span id="temperatureSummary"></span>
+            <span>·</span>
+            <span id="textureSummary"></span>
+            <span>·</span>
+            <span id="typeSummary"></span>
+          </div>
+
+          <button id="startOver" class="start-over" type="button">
+            Try again
+          </button>
+        </div>
       </div>
-
     </section>
 
   </main>
 
+  <script src="script.js"></script>
 </body>
-
 </html>
