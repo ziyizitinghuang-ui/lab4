@@ -19,36 +19,61 @@ let temperature = "";
 let texture = "";
 let drinkBase = "";
 
-temperatureButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    temperatureButtons.forEach(btn => btn.classList.remove("active"));
-    button.classList.add("active");
+function scrollToStep(step) {
+  setTimeout(function () {
+    step.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 200);
+}
 
-    temperature = button.dataset.temperature;
-    textureStep.classList.add("visible");
-  });
-});
+function selectTemperature() {
+  for (let i = 0; i < temperatureButtons.length; i++) {
+    temperatureButtons[i].classList.remove("active");
+  }
 
-textureButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    textureButtons.forEach(btn => btn.classList.remove("active"));
-    button.classList.add("active");
+  this.classList.add("active");
+  temperature = this.dataset.temperature;
 
-    texture = button.dataset.texture;
-    typeStep.classList.add("visible");
-  });
-});
+  textureStep.classList.add("visible");
+  scrollToStep(textureStep);
+}
 
-typeButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    typeButtons.forEach(btn => btn.classList.remove("active"));
-    button.classList.add("active");
+function selectTexture() {
+  for (let i = 0; i < textureButtons.length; i++) {
+    textureButtons[i].classList.remove("active");
+  }
 
-    drinkBase = button.dataset.type;
+  this.classList.add("active");
+  texture = this.dataset.texture;
 
-    findDrink();
-  });
-});
+  typeStep.classList.add("visible");
+  scrollToStep(typeStep);
+}
+
+function selectType() {
+  for (let i = 0; i < typeButtons.length; i++) {
+    typeButtons[i].classList.remove("active");
+  }
+
+  this.classList.add("active");
+  drinkBase = this.dataset.type;
+
+  findDrink();
+}
+
+for (let i = 0; i < temperatureButtons.length; i++) {
+  temperatureButtons[i].addEventListener("click", selectTemperature);
+}
+
+for (let i = 0; i < textureButtons.length; i++) {
+  textureButtons[i].addEventListener("click", selectTexture);
+}
+
+for (let i = 0; i < typeButtons.length; i++) {
+  typeButtons[i].addEventListener("click", selectType);
+}
 
 function findDrink() {
   if (
@@ -60,6 +85,7 @@ function findDrink() {
       "images/ice Café Latté.png",
       "Iced Café Latte"
     );
+
   } else if (
     temperature === "iced" &&
     texture === "light" &&
@@ -69,6 +95,7 @@ function findDrink() {
       "images/ice orange americano.png",
       "Iced Orange Americano"
     );
+
   } else if (
     temperature === "hot" &&
     texture === "creamy" &&
@@ -78,6 +105,7 @@ function findDrink() {
       "images/cappuccino.png",
       "Cappuccino"
     );
+
   } else if (
     temperature === "hot" &&
     texture === "light" &&
@@ -87,6 +115,7 @@ function findDrink() {
       "images/hot Americano.png",
       "Hot Americano"
     );
+
   } else if (
     temperature === "iced" &&
     texture === "creamy" &&
@@ -96,6 +125,7 @@ function findDrink() {
       "images/ice matcha latte.png",
       "Iced Matcha Latte"
     );
+
   } else if (
     temperature === "iced" &&
     texture === "light" &&
@@ -105,6 +135,7 @@ function findDrink() {
       "images/ice lemon tea.png",
       "Iced Lemon Tea"
     );
+
   } else if (
     temperature === "hot" &&
     texture === "creamy" &&
@@ -114,6 +145,7 @@ function findDrink() {
       "images/hot milk tea.png",
       "Hot Milk Tea"
     );
+
   } else if (
     temperature === "hot" &&
     texture === "light" &&
@@ -137,7 +169,7 @@ function showDrink(image, name) {
 
   result.classList.add("visible");
 
-  setTimeout(() => {
+  setTimeout(function () {
     result.scrollIntoView({
       behavior: "smooth",
       block: "center"
@@ -145,21 +177,30 @@ function showDrink(image, name) {
   }, 200);
 }
 
-startOver.addEventListener("click", () => {
+startOver.addEventListener("click", function () {
   temperature = "";
   texture = "";
   drinkBase = "";
 
-  temperatureButtons.forEach(btn => btn.classList.remove("active"));
-  textureButtons.forEach(btn => btn.classList.remove("active"));
-  typeButtons.forEach(btn => btn.classList.remove("active"));
+  for (let i = 0; i < temperatureButtons.length; i++) {
+    temperatureButtons[i].classList.remove("active");
+  }
+
+  for (let i = 0; i < textureButtons.length; i++) {
+    textureButtons[i].classList.remove("active");
+  }
+
+  for (let i = 0; i < typeButtons.length; i++) {
+    typeButtons[i].classList.remove("active");
+  }
 
   textureStep.classList.remove("visible");
   typeStep.classList.remove("visible");
   result.classList.remove("visible");
 
-  drinkImage.src = "";
-  drinkName.textContent = "";
+  drinkImage.src = "images/coffee.png";
+  drinkImage.alt = "Recommended drink";
+  drinkName.textContent = "Your drink";
 
   temperatureSummary.textContent = "";
   textureSummary.textContent = "";
